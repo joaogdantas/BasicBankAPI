@@ -65,7 +65,7 @@ public class AccountController {
         return ResponseEntity.notFound().build();
     }
     @PutMapping("/{operation}/{accountNumber}")
-    public ResponseEntity deposit(@PathVariable String operation, @PathVariable Integer accountNumber, @RequestBody AccountOperationDTO operationData){
+    public ResponseEntity DepositOrWithdrawOperation(@PathVariable String operation, @PathVariable Integer accountNumber, @RequestBody AccountOperationDTO operationData){
         try {
             Float depositAmount = Float.parseFloat(operationData.amount());
             Optional<Account> optionalAccount = repository.findByAccountNumber(accountNumber);
