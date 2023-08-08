@@ -7,6 +7,7 @@ import com.potig.joaogdantas.BasicBankAPI.domain.creditCard.repository.CreditCar
 import com.potig.joaogdantas.BasicBankAPI.domain.creditCard.dto.CreditCardCreateDTO;
 import com.potig.joaogdantas.BasicBankAPI.domain.creditCard.dto.CreditCardReturnDTO;
 import com.potig.joaogdantas.BasicBankAPI.domain.creditCard.dto.CreditCardUpdateLimitDTO;
+import com.potig.joaogdantas.BasicBankAPI.domain.exception.InvalidCreditCardFormatException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,9 +32,18 @@ public class CreditCardController {
         CreditCard creditCard = new CreditCard();
 
         creditCard.setCardNumber(data.cardNumber());
+        if (creditCard.getCardNumber() == null || creditCard.getCardNumber().length() != 16) {
+            throw new InvalidCreditCardFormatException("O número do cartão deve conter exatamente 16 caracteres, digite apenas números sem pontos ou espaços");
+        }
+
         creditCard.setCardBrand(data.cardBrand());
         creditCard.setExpirationDate(data.expirationDate());
+
         creditCard.setCvv(data.cvv());
+        if (creditCard.getCvv() == null || creditCard.getCvv().length() != 3) {
+            throw new InvalidCreditCardFormatException("O CVV deve conter exatamente 3 caracteres");
+        }
+
         creditCard.setCreditLimit(data.creditLimit());
 
         Optional<Account> optionalAccount = accountRepository.findByAccountNumber(data.accountNumber());

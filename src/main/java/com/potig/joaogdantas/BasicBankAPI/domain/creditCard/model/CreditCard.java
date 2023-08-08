@@ -2,6 +2,7 @@ package com.potig.joaogdantas.BasicBankAPI.domain.creditCard.model;
 
 import com.potig.joaogdantas.BasicBankAPI.domain.account.model.Account;
 import com.potig.joaogdantas.BasicBankAPI.domain.creditCard.dto.CreditCardReturnDTO;
+import com.potig.joaogdantas.BasicBankAPI.service.ValidExpirationDate;
 import lombok.*;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class CreditCard {
     @Column(name = "card_brand")
     private String cardBrand;
     @Column(name = "expiration_date")
+    @ValidExpirationDate
     private String expirationDate;
     @Column(name = "cvv")
     private String cvv;
