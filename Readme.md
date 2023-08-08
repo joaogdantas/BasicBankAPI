@@ -33,7 +33,11 @@ Os recursos foram pensados com base em um levantamento de requisitos:
   - Deletar endereço
 
 - Credit Card
-  - Criar cartão de crédito (Passando o número da conta associada a ele);
+  - Criar cartão de crédito (Passando o número da conta a qual ele está associado);
+  	- Para isso algumas validações são feitas:
+   		- O número do cartão deve conter exatamente 16 números, passando somente números, sem pontos ou espaços;
+       		- O CVV deve conter exatamente 3 números;
+           	- A data de expiração tem que estar correta no formato (MM/yy) e deve ser uma data válida, ou seja, expiração após a data atual.
   - Retornar os cartões de crédito associados a uma conta (Por questões de segurança foi criado um método para retornar apenas os últimos 4 dígitos do cartão, substituindo o restante por "*");
   - Atualizar limite de crédito do cartão;
   - Deletar cartão associado a uma conta.
@@ -64,7 +68,7 @@ Alguns pontos que ainda preciso adicionar que poderiam ser úteis, mas como se t
 - Por motivos de facilitar o acesso a API, acabei não adicionando nada de spring security, isso seria algo a adicionar futuramente;
 - Ainda necessário serem adicionados testes unitários;
 - Adicionar novas entidades para aumentar a complexidade, como funcionário, por exemplo;
-- Como desenvolvedor backend, não tenho experiência e conhecimento sólido em tecnologias de frontend, estou estudando Flutter para poder dar uma interface gráfica à API.
+- Fazer uma interface gráfica à API.
 
 ## Meu Linkedin:
 
