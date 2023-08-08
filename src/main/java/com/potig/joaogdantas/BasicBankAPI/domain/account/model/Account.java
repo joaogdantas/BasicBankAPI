@@ -1,10 +1,12 @@
 package com.potig.joaogdantas.BasicBankAPI.domain.account.model;
 
+import com.potig.joaogdantas.BasicBankAPI.domain.creditCard.model.CreditCard;
 import com.potig.joaogdantas.BasicBankAPI.domain.customer.model.Customer;
 import lombok.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import javax.persistence.*;
+import java.util.List;
 
 @Table(name = "accounts")
 @Entity(name = "account")
@@ -25,6 +27,8 @@ public class Account {
     private Float balance;
     @OneToOne(mappedBy = "account")
     private Customer customer;
+    @OneToMany(mappedBy = "account")
+    private List<CreditCard> creditCards;
 
     public ResponseEntity deposit(Float amount){
         balance += amount;
